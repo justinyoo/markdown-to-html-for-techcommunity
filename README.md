@@ -1,2 +1,18 @@
-# markdown-to-html-for-techcommunity
-This provides an Azure Functions app that converts a markdown document to an HTML one for Microsoft Tech Community
+# Markdown to HTML for Posts at Microsoft Tech Community #
+
+This provides an Azure Functions app that converts a markdown document to an HTML one for Microsoft Tech Community posts.
+
+
+## Prerequisites ##
+
+* .NET Core 3.1 LTS
+* Azure Functions Core Tools v3+
+
+
+## Getting Started ##
+
+1. Clone this repository.
+2. Run the function app locally.
+3. Send a POST request to `http://localhost:7071/api/convert/md/to/html` with the markdown document as the body.
+4. Get the HTML converted result and put the result to the HTML editor at Tech Community.
+
