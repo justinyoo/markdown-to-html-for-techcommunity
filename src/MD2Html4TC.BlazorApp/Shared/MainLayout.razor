@@ -1,0 +1,20 @@
+@inherits MainLayoutBase
+
+<div class="page">
+    <div class="sidebar">
+        <NavMenu />
+    </div>
+
+    <div class="main">
+        <div class="top-row px-4 text-end" hidden="@IsLoginHidden">
+            <a href="/login" @onclick="OnLoggedInAsync">로그인</a>
+        </div>
+        <div class="top-row px-4 text-end" hidden="@IsLogoutHidden">
+            <span class="px-4">@DisplayName</span> | <a href="/logout" @onclick="OnLoggedOutAsync">로그아웃</a>
+        </div>
+
+        <div class="content px-4">
+            @Body
+        </div>
+    </div>
+</div>
