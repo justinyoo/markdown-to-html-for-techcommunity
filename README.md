@@ -5,8 +5,8 @@ This provides an Azure Functions app that converts a markdown document to an HTM
 
 ## Prerequisites ##
 
-* .NET Core 3.1 LTS
-* Azure Functions Core Tools v3+
+* .NET 6 LTS
+* Azure Functions Core Tools v4
 
 
 ## Getting Started ##

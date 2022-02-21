@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 using Microsoft.Azure.WebJobs.Extensions.OpenApi.Core.Extensions;
 
-namespace MD2Html4TC.FunctionApp
+namespace MD2Html4TC.FunctionApp.Extensions
 {
     /// <summary>
     /// This represents the extension class for <see cref="string"/>.

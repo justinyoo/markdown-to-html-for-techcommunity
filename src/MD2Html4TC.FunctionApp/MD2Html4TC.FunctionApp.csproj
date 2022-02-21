@@ -1,16 +1,23 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net6</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
     <AzureFunctionsVersion>v4</AzureFunctionsVersion>
 
     <AssemblyName>MD2Html4TC.FunctionApp</AssemblyName>
     <RootNamespace>MD2Html4TC.FunctionApp</RootNamespace>
+
+    <_FunctionsSkipCleanOutput>true</_FunctionsSkipCleanOutput>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Markdig.Signed" Version="0.26.0" />
-    <PackageReference Include="Microsoft.Azure.WebJobs.Extensions.OpenApi" Version="1.0.0" />
+    <PackageReference Include="Aliencube.AzureFunctions.Extensions.Common" Version="1.1.0" />
+    <PackageReference Include="Markdig.Signed" Version="0.27.0" />
+    <PackageReference Include="Microsoft.Azure.Functions.Extensions" Version="1.1.0" />
+    <PackageReference Include="Microsoft.Azure.WebJobs.Extensions.OpenApi" Version="1.1.0" />
+    <PackageReference Include="Microsoft.Extensions.Http" Version="6.0.0" />
+    <PackageReference Include="Microsoft.Graph" Version="4.18.0" />
+    <PackageReference Include="Microsoft.Identity.Client" Version="4.41.0" />
     <PackageReference Include="Microsoft.NET.Sdk.Functions" Version="4.0.1" />
   </ItemGroup>
 
