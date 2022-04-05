@@ -69,13 +69,20 @@ namespace MD2Html4TC.FunctionApp.Triggers
                 md = await reader.ReadToEndAsync().ConfigureAwait(false);
             }
 
-            var pipeline = new MarkdownPipelineBuilder().UseAdvancedExtensions().UseEmojiAndSmiley().UseYamlFrontMatter().Build();
+            var pipeline = new MarkdownPipelineBuilder()
+                               .UseAdvancedExtensions()
+                            //    .UseEmojiAndSmiley()
+                               .UseYamlFrontMatter()
+                               .Build();
             var html = Markdown.ToHtml(md, pipeline);
             html = this._regex.Replace(html, "<li-code lang=\"$1\">")
                               .Replace("</code></pre>", "</li-code>")
 
                               .AddEmptyParagraph(this._appSettings.Converter.HtmlTags, this._appSettings.Converter.HtmlTags)
                               ;
+
+            // TODO: Convert emojis to images on GitHub
+            // :point_right: -> <img src="https://github.githubassets.com/images/icons/emoji/unicode/1f449.png?v8" alt=":point_right:" style="display:inline;width:16px;height:16px;">
 
             var result = new ContentResult()
             {
