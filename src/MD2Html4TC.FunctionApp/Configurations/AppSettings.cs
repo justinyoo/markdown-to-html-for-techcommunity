@@ -1,6 +1,4 @@
-using System;
 using System.Collections.Generic;
-using System.Linq;
 
 using Microsoft.Azure.WebJobs.Extensions.OpenApi.Core.Enums;
 
@@ -45,7 +43,7 @@ namespace MD2Html4TC.FunctionApp.Configurations
         /// <summary>
         /// Gets or sets the connection string.
         /// </summary>
-        public virtual string ConnectionString { get; set; } = Environment.GetEnvironmentVariable(AppSettingsKeys.StorageAccountKey) ?? string.Empty;
+        public virtual string ConnectionString { get; set; }
     }
 
     /// <summary>
@@ -56,7 +54,7 @@ namespace MD2Html4TC.FunctionApp.Configurations
         /// <summary>
         /// Gets or sets the connection string.
         /// </summary>
-        public virtual string ConnectionString { get; set; } = Environment.GetEnvironmentVariable(AppSettingsKeys.AppInsightsKey) ?? string.Empty;
+        public virtual string ConnectionString { get; set; }
     }
 
     /// <summary>
@@ -65,27 +63,29 @@ namespace MD2Html4TC.FunctionApp.Configurations
     public class OpenApiSettings
     {
         /// <summary>
+        /// Gets the settings name.
+        /// </summary>
+        public const string Name = "OpenApi";
+
+        /// <summary>
         /// Gets or sets the <see cref="OpenApiVersionType"/> value.
         /// </summary>
-        public virtual OpenApiVersionType Version { get; set; } = Enum.TryParse<OpenApiVersionType>(
-                                                                       Environment.GetEnvironmentVariable(AppSettingsKeys.OpenApiVersionKey), ignoreCase: true, out var result)
-                                                                     ? result
-                                                                     : OpenApiConfigurationOptions.DefaultVersion();
+        public virtual OpenApiVersionType Version { get; set; }
 
         /// <summary>
         /// Gets or sets the OpenAPI document version.
         /// </summary>
-        public virtual string DocumentVersion { get; set; } = Environment.GetEnvironmentVariable(AppSettingsKeys.OpenApiDocVersionKey) ?? OpenApiConfigurationOptions.DefaultDocVersion();
+        public virtual string DocVersion { get; set; }
 
         /// <summary>
         /// Gets or sets the OpenAPI document title.
         /// </summary>
-        public virtual string DocumentTitle { get; set; } = Environment.GetEnvironmentVariable(AppSettingsKeys.OpenApiDocTitleKey) ?? OpenApiConfigurationOptions.DefaultDocTitle(typeof(AppSettings));
+        public virtual string DocTitle { get; set; }
 
         /// <summary>
         /// Gets or sets the OpenAPI document description
         /// </summary>
-        public virtual string DocumentDescription { get; set; } = Environment.GetEnvironmentVariable(AppSettingsKeys.OpenApiDocDescriptionKey) ?? OpenApiConfigurationOptions.DefaultDocDescription(typeof(AppSettings));
+        public virtual string DocDescription { get; set; }
     }
 
     /// <summary>
@@ -94,34 +94,39 @@ namespace MD2Html4TC.FunctionApp.Configurations
     public class MsGraphSettings
     {
         /// <summary>
-        /// Gets or sets the URI for login.
+        /// Gets the settings name.
         /// </summary>
-        public virtual string LoginUri { get; set; } = Environment.GetEnvironmentVariable(AppSettingsKeys.MsGraphLoginUriKey);
+        public const string Name = "MsGraph";
+
+        /// <summary>
+        /// Gets or sets the URL for login.
+        /// </summary>
+        public virtual string LoginUrl { get; set; }
 
         /// <summary>
         /// Gets or sets the tenant ID.
         /// </summary>
-        public virtual string TenantId { get; set; } = Environment.GetEnvironmentVariable(AppSettingsKeys.MsGraphTenantIdKey);
+        public virtual string TenantId { get; set; }
 
         /// <summary>
         /// Gets or sets the client ID.
         /// </summary>
-        public virtual string ClientId { get; set; } = Environment.GetEnvironmentVariable(AppSettingsKeys.MsGraphClientIdKey);
+        public virtual string ClientId { get; set; }
 
         /// <summary>
         /// Gets or sets the client ID.
         /// </summary>
-        public virtual string ClientSecret { get; set; } = Environment.GetEnvironmentVariable(AppSettingsKeys.MsGraphClientSecretKey);
+        public virtual string ClientSecret { get; set; }
 
         /// <summary>
-        /// Gets or sets the MS Graph API URI.
+        /// Gets or sets the MS Graph API URL.
         /// </summary>
-        public virtual string ApiUri { get; set; } = Environment.GetEnvironmentVariable(AppSettingsKeys.MsGraphApiUriKey);
+        public virtual string ApiUrl { get; set; }
 
         /// <summary>
-        /// Gets or sets the base URI.
+        /// Gets or sets the base URL.
         /// </summary>
-        public virtual string BaseUri { get; set; } = Environment.GetEnvironmentVariable(AppSettingsKeys.MsGraphBaseUriKey);
+        public virtual string BaseUrl { get; set; }
     }
 
     /// <summary>
@@ -130,10 +135,29 @@ namespace MD2Html4TC.FunctionApp.Configurations
     public class ConverterSettings
     {
         /// <summary>
+        /// Gets the settings name.
+        /// </summary>
+        public const string Name = "Converter";
+
+        /// <summary>
         /// Gets or sets the list of HTML tags to add extra blank paragraph.
         /// </summary>
-        public virtual IEnumerable<string> HtmlTags { get; set; } = Environment.GetEnvironmentVariable(AppSettingsKeys.ConverterHtmlTagsKey)
-                                                                        .Split(new[] { "," }, StringSplitOptions.RemoveEmptyEntries)
-                                                                        .Select(p => p.Trim());
+        public virtual IEnumerable<string> HtmlTags { get; set; }
+    }
+
+    /// <summary>
+    /// This represents the app settings entity for the emoji.
+    /// </summary>
+    public class EmojiSettings
+    {
+        /// <summary>
+        /// Gets the settings name.
+        /// </summary>
+        public const string Name = "Emoji";
+
+        /// <summary>
+        /// Gets or sets the list of HTML tags to add extra blank paragraph.
+        /// </summary>
+        public virtual string ApiUrl { get; set; }
     }
 }

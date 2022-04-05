@@ -9,14 +9,16 @@
     "OpenApi__DocTitle": "Markdown to HTML Converter for TechCommunity",
     "OpenApi__DocDescription": "Interface that converts Markdown document to HTML for TechCommunity blog posts",
 
-    "MsGraph__LoginUri": "https://login.microsoftonline.com/",
+    "MsGraph__LoginUrl": "https://login.microsoftonline.com/",
     "MsGraph__TenantId": "<tenant_id>",
     "MsGraph__ClientId": "<client_id>",
     "MsGraph__ClientSecret": "<client_secret>",
-    "MsGraph__ApiUri": "https://graph.microsoft.com/",
-    "MsGraph__BaseUri": "v1.0/",
+    "MsGraph__ApiUrl": "https://graph.microsoft.com/",
+    "MsGraph__BaseUrl": "v1.0/",
 
-    "Converter__HtmlTags": "p,blockquote,h1,h2,h3,h4,h5,h6,ol,ul,dl"
+    "Converter__HtmlTags": "p,blockquote,h1,h2,h3,h4,h5,h6,ol,ul,dl",
+
+    "Emoji__ApiUrl": "https://api.github.com/emojis"
   },
   "Host": {
     "CORS": "https://localhost:5001;http://localhost:5000"

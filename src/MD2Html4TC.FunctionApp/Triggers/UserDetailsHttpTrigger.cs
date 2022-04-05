@@ -33,10 +33,10 @@ namespace MD2Html4TC.FunctionApp
     /// </summary>
     public class UserDetailsHttpTrigger
     {
-        private readonly AppSettings _settings;
+        private readonly MsGraphSettings _settings;
         private readonly ILogger<UserDetailsHttpTrigger> _logger;
 
-        public UserDetailsHttpTrigger(AppSettings settings, ILogger<UserDetailsHttpTrigger> logger)
+        public UserDetailsHttpTrigger(MsGraphSettings settings, ILogger<UserDetailsHttpTrigger> logger)
         {
             this._settings = settings.ThrowIfNullOrDefault();
             this._logger = logger.ThrowIfNullOrDefault();
@@ -77,7 +77,7 @@ namespace MD2Html4TC.FunctionApp
 
         private async Task<GraphServiceClient> GetGraphClientAsync()
         {
-            var baseUri = $"{this._settings.MsGraph.ApiUri.TrimEnd('/')}/{this._settings.MsGraph.BaseUri}";
+            var baseUri = $"{this._settings.ApiUrl.TrimEnd('/')}/{this._settings.BaseUrl}";
             var provider = new DelegateAuthenticationProvider(async p =>
             {
                 var accessToken = await this.GetAccessTokenAsync().ConfigureAwait(false);
@@ -90,8 +90,8 @@ namespace MD2Html4TC.FunctionApp
 
         private async Task<string> GetAccessTokenAsync()
         {
-            var scopes = new[] { $"{this._settings.MsGraph.ApiUri.TrimEnd('/')}/.default" };
-            var options = this._settings.MsGraph.ToConfidentialClientApplicationOptions();
+            var scopes = new[] { $"{this._settings.ApiUrl.TrimEnd('/')}/.default" };
+            var options = this._settings.ToConfidentialClientApplicationOptions();
             var authority = $"{options.Instance.TrimEnd('/')}/{options.TenantId}";
 
             var app = ConfidentialClientApplicationBuilder

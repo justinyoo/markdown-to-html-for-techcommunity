@@ -1,15 +1,10 @@
 using System.IO;
 using System.Net;
-using System.Net.Http;
-using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 using Aliencube.AzureFunctions.Extensions.Common;
 
-using Markdig;
-
-using MD2Html4TC.FunctionApp.Configurations;
-using MD2Html4TC.FunctionApp.Extensions;
+using MD2Html4TC.FunctionApp.Services;
 
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -28,24 +23,18 @@ namespace MD2Html4TC.FunctionApp.Triggers
     /// </summary>
     public class ConvertHttpTrigger
     {
-        private readonly AppSettings _appSettings;
         private readonly ILogger<ConvertHttpTrigger> _logger;
-        private readonly HttpClient _httpClient;
-        private readonly Regex _regex;
+        private readonly IMarkdownService _service;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ConvertHttpTrigger"/> class.
         /// </summary>
-        /// <param name="settings"><see cref="AppSettings"/> instance.</param>
         /// <param name="logger"><see cref="ILogger"/> instance.</param>
-        /// <param name="httpClient"><see cref="HttpClient"/> instance.</param>
-        /// <param name="regex"><see cref="Regex"/> instance.</param>
-        public ConvertHttpTrigger(AppSettings settings, ILogger<ConvertHttpTrigger> logger, HttpClient httpClient, Regex regex)
+        /// <param name="service"><see cref="IMarkdownService"/> instance.</param>
+        public ConvertHttpTrigger(ILogger<ConvertHttpTrigger> logger, IMarkdownService service)
         {
-            this._appSettings = settings.ThrowIfNullOrDefault();
             this._logger = logger.ThrowIfNullOrDefault();
-            this._httpClient = httpClient.ThrowIfNullOrDefault();
-            this._regex = regex.ThrowIfNullOrDefault();
+            this._service = service.ThrowIfNullOrDefault();
         }
 
         /// <summary>
@@ -69,20 +58,7 @@ namespace MD2Html4TC.FunctionApp.Triggers
                 md = await reader.ReadToEndAsync().ConfigureAwait(false);
             }
 
-            var pipeline = new MarkdownPipelineBuilder()
-                               .UseAdvancedExtensions()
-                            //    .UseEmojiAndSmiley()
-                               .UseYamlFrontMatter()
-                               .Build();
-            var html = Markdown.ToHtml(md, pipeline);
-            html = this._regex.Replace(html, "<li-code lang=\"$1\">")
-                              .Replace("</code></pre>", "</li-code>")
-
-                              .AddEmptyParagraph(this._appSettings.Converter.HtmlTags, this._appSettings.Converter.HtmlTags)
-                              ;
-
-            // TODO: Convert emojis to images on GitHub
-            // :point_right: -> <img src="https://github.githubassets.com/images/icons/emoji/unicode/1f449.png?v8" alt=":point_right:" style="display:inline;width:16px;height:16px;">
+            var html = await this._service.ConvertToHtmlAsync(md).ConfigureAwait(false);
 
             var result = new ContentResult()
             {

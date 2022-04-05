@@ -18,7 +18,7 @@ namespace MD2Html4TC.FunctionApp.Extensions
         {
             var options = new ConfidentialClientApplicationOptions()
             {
-                Instance = settings.LoginUri,
+                Instance = settings.LoginUrl,
                 ClientId = settings.ClientId,
                 ClientSecret = settings.ClientSecret,
                 TenantId = settings.TenantId,
