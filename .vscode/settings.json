@@ -1,7 +1,7 @@
 {
-  "azureFunctions.deploySubpath": "src/MD2Html4TC.FunctionApp/bin/Release/netcoreapp3.1/publish",
+  "azureFunctions.deploySubpath": "src/MD2Html4TC.FunctionApp/bin/Release/net6.0/publish",
   "azureFunctions.projectLanguage": "C#",
-  "azureFunctions.projectRuntime": "~3",
+  "azureFunctions.projectRuntime": "~4",
   "debug.internalConsoleOptions": "neverOpen",
   "azureFunctions.preDeployTask": "publish (functions)",
   "azureFunctions.projectSubpath": "src/MD2Html4TC.FunctionApp",
@@ -10,5 +10,6 @@
     "MD025": {
       "front_matter_title": ""
     }
-  }
+  },
+  "dotnet.defaultSolution": "MD2Html4TC.sln"
 }
