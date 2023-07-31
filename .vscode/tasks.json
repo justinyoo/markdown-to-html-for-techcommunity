@@ -59,7 +59,7 @@
       "type": "func",
       "dependsOn": "build (functions)",
       "options": {
-        "cwd": "${workspaceFolder}/src/MD2Html4TC.FunctionApp/bin/Debug/netcoreapp3.1"
+        "cwd": "${workspaceFolder}/src/MD2Html4TC.FunctionApp/bin/Debug/net6.0"
       },
       "command": "host start",
       "isBackground": true,
