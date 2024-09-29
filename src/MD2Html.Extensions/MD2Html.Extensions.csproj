@@ -1,0 +1,12 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+
+    <AssemblyName>MD2Html.Extensions</AssemblyName>
+    <RootNamespace>MD2Html.Extensions</RootNamespace>
+  </PropertyGroup>
+
+</Project>
