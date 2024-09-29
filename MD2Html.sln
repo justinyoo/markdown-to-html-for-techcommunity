@@ -1,0 +1,41 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{482916F4-07A3-4B0D-A9C4-704AB669FDD4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MD2Html.FunctionApp", "src\MD2Html.FunctionApp\MD2Html.FunctionApp.csproj", "{2639E4F1-82C3-4376-9AA3-F1746B1D52FB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MD2Html.Extensions", "src\MD2Html.Extensions\MD2Html.Extensions.csproj", "{A0006A41-61BD-4C71-9E72-6B0BDFCFE2B5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MD2Html.Services", "src\MD2Html.Services\MD2Html.Services.csproj", "{2636C582-633B-4CD4-AD27-BE42E70E1774}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2639E4F1-82C3-4376-9AA3-F1746B1D52FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2639E4F1-82C3-4376-9AA3-F1746B1D52FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2639E4F1-82C3-4376-9AA3-F1746B1D52FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2639E4F1-82C3-4376-9AA3-F1746B1D52FB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A0006A41-61BD-4C71-9E72-6B0BDFCFE2B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A0006A41-61BD-4C71-9E72-6B0BDFCFE2B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A0006A41-61BD-4C71-9E72-6B0BDFCFE2B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A0006A41-61BD-4C71-9E72-6B0BDFCFE2B5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2636C582-633B-4CD4-AD27-BE42E70E1774}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2636C582-633B-4CD4-AD27-BE42E70E1774}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2636C582-633B-4CD4-AD27-BE42E70E1774}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2636C582-633B-4CD4-AD27-BE42E70E1774}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{2639E4F1-82C3-4376-9AA3-F1746B1D52FB} = {482916F4-07A3-4B0D-A9C4-704AB669FDD4}
+		{A0006A41-61BD-4C71-9E72-6B0BDFCFE2B5} = {482916F4-07A3-4B0D-A9C4-704AB669FDD4}
+		{2636C582-633B-4CD4-AD27-BE42E70E1774} = {482916F4-07A3-4B0D-A9C4-704AB669FDD4}
+	EndGlobalSection
+EndGlobal
