@@ -16,9 +16,10 @@ public interface IConverterService
     /// </summary>
     /// <param name="markdown">Markdown document.</param>
     /// <param name="tc">Value indicating whether the markdown file is for Tech Community or not.</param>
+    /// <param name="p">Value indicating whether the extra empty paragraph is necessary in between paragraphs not.</param>
     /// <param name="tags">List of tags to put extra empty paragraph.</param>
     /// <returns>Returns the HTML document converted from the markdown document.</returns>
-    Task<string> ConvertToHtmlAsync(string markdown, bool tc = false, IEnumerable<string>? tags = null);
+    Task<string> ConvertToHtmlAsync(string markdown, bool tc = false, bool p = false, IEnumerable<string>? tags = null);
 }
 
 /// <summary>
@@ -30,7 +31,7 @@ public class ConverterService (Regex regex): IConverterService
     private readonly Regex _regex = regex ?? throw new ArgumentNullException(nameof(regex));
 
     /// <inheritdoc />
-    public async Task<string> ConvertToHtmlAsync(string markdown, bool tc = false, IEnumerable<string>? tags = null)
+    public async Task<string> ConvertToHtmlAsync(string markdown, bool tc = false, bool p = false, IEnumerable<string>? tags = null)
     {
         var pipeline = new MarkdownPipelineBuilder()
                            .UseAdvancedExtensions()
@@ -50,10 +51,11 @@ public class ConverterService (Regex regex): IConverterService
         }
 
         html = this._regex.Replace(html, "<li-code lang=\"$1\">")
-                          .Replace("</code></pre>", "</li-code>")
-
-                          .AddEmptyParagraph(tags!, tags!)
-                          ;
+                          .Replace("</code></pre>", "</li-code>");
+        if (p == true)
+        {
+            html = html.AddEmptyParagraph(tags!, tags!);
+        }
 
         return await Task.FromResult(html).ConfigureAwait(false);
     }

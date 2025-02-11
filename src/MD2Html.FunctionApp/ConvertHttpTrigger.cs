@@ -35,6 +35,7 @@ public class ConvertHttpTrigger(HtmlSettings settings, IConverterService service
     [OpenApiOperation(operationId: "convert", tags: [ "md2html" ], Summary = "Convert Markdown to HTML", Description = "Convert Markdown to HTML", Visibility = OpenApiVisibilityType.Important)]
     [OpenApiSecurity(schemeName: "function_key", schemeType: SecuritySchemeType.ApiKey, Name = "x-functions-key", In = OpenApiSecurityLocationType.Header, Description = "API Key through the request header")]
     [OpenApiParameter(name: "tc", In = ParameterLocation.Query, Required = false, Type = typeof(bool), Summary = "Value indicating whether to convert it for Tech Community or not", Description = "This value indicates whether the markdown document is converted for Tech Community or not")]
+    [OpenApiParameter(name: "p", In = ParameterLocation.Query, Required = false, Type = typeof(bool), Summary = "Value indicating whether to inject extra empty paragraph in between paragraphs or not", Description = "This value indicates whether the extra empty paragraph is injected in between paragraphs or not")]
     [OpenApiRequestBody(contentType: "text/plain", bodyType: typeof(string), Required = true, Description = "Markdown contents")]
     [OpenApiResponseWithBody(statusCode: HttpStatusCode.OK, contentType: "text/plain", bodyType: typeof(string), Summary = "HTML contents converted from Markdown", Description = "HTML contents")]
     [OpenApiResponseWithBody(statusCode: HttpStatusCode.InternalServerError, contentType: "text/plain", bodyType: typeof(string), Summary = "Something went wrong", Description = "Something went wrong on the server-side")]
@@ -53,12 +54,13 @@ public class ConvertHttpTrigger(HtmlSettings settings, IConverterService service
             using (var reader = new StreamReader(req.Body))
             md = await reader.ReadToEndAsync();
 
-            var tc = bool.TryParse(req.Query["tc"], out var parsed) && parsed;
+            var tc = bool.TryParse(req.Query["tc"], out var tcParsed) && tcParsed;
+            var p = bool.TryParse(req.Query["p"], out var pParsed) && pParsed;
             var htmlTags = this._settings.Tags!
                                         .Split([ "," ], StringSplitOptions.RemoveEmptyEntries)
                                         .Select(p => p.Trim());
 
-            var html = await this._service.ConvertToHtmlAsync(md, tc, htmlTags);
+            var html = await this._service.ConvertToHtmlAsync(md, tc, p, htmlTags);
             result.Content = html;
             result.StatusCode = (int)HttpStatusCode.OK;
 
